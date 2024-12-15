@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "Starting SSH connection to VPS..."
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-            set -e
+            set -e 
             echo "Stopping existing Docker container if any..."
             docker stop react-crm || true
             docker rm react-crm || true
