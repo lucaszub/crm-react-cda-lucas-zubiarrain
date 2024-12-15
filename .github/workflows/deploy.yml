@@ -1,24 +1,18 @@
-name: Deploy to VPS
-
-on:
-  workflow_run:
-    workflows: ["Setup Docker on VPS"]
-    types:
-      - completed
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
+      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Set up SSH key
       - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # Deploy Docker container to VPS
       - name: Deploy Docker container to VPS
         run: |
           echo "Starting SSH connection to VPS..."
@@ -32,11 +26,12 @@ jobs:
             docker pull lucaszub/react-crm:latest
 
             echo "Running the Docker container..."
-            docker run -d --name react-crm -p 5173:5173 lucaszub/react-crm:latest
+            docker run -d --name react-crm -p 80:80 lucaszub/react-crm:latest  # Utilisation du port 80
 
             echo "Deployment completed successfully!"
           EOF
 
+      # Verify Deployment Status
       - name: Verify Deployment Status
         run: |
           echo "Checking Docker container status on VPS..."
