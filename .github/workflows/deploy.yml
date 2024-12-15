@@ -1,3 +1,11 @@
+name: Deploy to VPS
+
+on:
+  workflow_run:
+    workflows: ["Setup Docker on VPS"]
+    types:
+      - completed
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
