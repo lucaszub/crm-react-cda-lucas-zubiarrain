@@ -10,7 +10,7 @@ RUN npm install
 # Copier le reste de l'application et faire le build
 COPY . .
 RUN npm run build
-
+         #t
 # Étape 2 : Serve les fichiers statiques générés (généralement le dossier dist) avec un serveur simple
 FROM nginx:alpine
 
