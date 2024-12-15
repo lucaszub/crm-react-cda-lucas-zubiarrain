@@ -1,0 +1,45 @@
+name: Deploy to VPS
+
+on:
+  workflow_run:
+    workflows: ["Setup Docker on VPS"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy Docker container to VPS
+        run: |
+          echo "Starting SSH connection to VPS..."
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+            set -e
+            echo "Stopping existing Docker container if any..."
+            docker stop react-crm || true
+            docker rm react-crm || true
+
+            echo "Pulling the latest Docker image..."
+            docker pull lucaszub/react-crm:latest
+
+            echo "Running the Docker container..."
+            docker run -d --name react-crm -p 5173:5173 lucaszub/react-crm:latest
+
+            echo "Deployment completed successfully!"
+          EOF
+
+      - name: Verify Deployment Status
+        run: |
+          echo "Checking Docker container status on VPS..."
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+            docker ps | grep react-crm || echo "Docker container is not running"
+          EOF
