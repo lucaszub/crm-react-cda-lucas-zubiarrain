@@ -4,11 +4,11 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Copier package.json et package-lock.json et installer les dépendances
-COPY package*.json ./ 
+COPY package*.json ./
 RUN npm install
 
 # Copier le reste de l'application et faire le build
-COPY . . 
+COPY . .
 
 # Générer les fichiers statiques de l'application
 RUN npm run build
