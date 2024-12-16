@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',  // Permet à Vite d'écouter sur toutes les interfaces
-    port: 5173,        // Port de ton frontend React
+    port: 3000,        // Port de ton frontend React
   },
 })

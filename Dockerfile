@@ -18,7 +18,7 @@ FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Exposer le port 80 pour le front-end
-EXPOSE 80
+EXPOSE 3000
 
 # Démarrer Nginx (par défaut Nginx écoute déjà sur le port 80)
 CMD ["nginx", "-g", "daemon off;"]
