@@ -34,7 +34,9 @@ jobs:
             docker pull lucaszub/react-crm:latest
 
             echo "Running the Docker container..."
-            docker run -d --name react-crm -p 80:80 lucaszub/react-crm:latest  # Utilisation du port 80
+            docker build -t lucaszub/react-crm .
+            docker run -d -p 80:80 -p 443:443 --name react-crm lucaszub/react-crm:latest
+
 
             echo "Deployment completed successfully!"
           EOF
