@@ -22,6 +22,10 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copier les fichiers générés dans le dossier dist vers le répertoire Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copier les certificats SSL dans le conteneur
+COPY ./path_to_certificates/fullchain.pem /etc/letsencrypt/live/lzubdev.com/fullchain.pem
+COPY ./path_to_certificates/privkey.pem /etc/letsencrypt/live/lzubdev.com/privkey.pem
+
 # Exposer les ports 80 (HTTP) et 443 (HTTPS)
 EXPOSE 80
 EXPOSE 443
