@@ -16,8 +16,8 @@ RUN npm run build
 # Étape 2 : Serve les fichiers statiques générés avec Nginx
 FROM nginx:alpine
 
-# Copier le fichier nginx.conf personnalisé
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copier la configuration spécifique à l'application React
+COPY react-crm.conf /etc/nginx/conf.d/
 
 # Copier les fichiers générés dans le dossier dist vers le répertoire Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
