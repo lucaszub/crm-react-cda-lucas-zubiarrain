@@ -3,7 +3,7 @@ FROM node:18 AS build
 
 WORKDIR /app
 
-# Copier package.json et installer les dépendances
+# Installer les dépendances
 COPY package*.json ./
 RUN npm install
 
@@ -11,14 +11,19 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Étape 2 : Serveur de production (Nginx)
-FROM nginx:alpine
+# Étape 2 : Serveur pour fichiers statiques
+FROM node:18-alpine
 
-# Copier le build de l'étape précédente dans le répertoire où Nginx s'attend à trouver les fichiers
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /app
 
-# Exposer le port 80 pour l'accès HTTP
-EXPOSE 80
+# Installer serve pour servir les fichiers statiques
+RUN npm install -g serve
 
-# Démarrer Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Copier le build de l'étape précédente
+COPY --from=build /app/dist /app/dist
+
+# Exposer le port 3000 (ou autre port de ton choix)
+EXPOSE 3000
+
+# Commande pour lancer le serveur
+CMD ["serve", "-s", "dist", "-l", "3000"]
