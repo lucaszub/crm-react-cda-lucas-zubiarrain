@@ -4,27 +4,21 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Copier package.json et package-lock.json et installer les dépendances
-COPY package*.json ./
+COPY package*.json ./ 
 RUN npm install
 
 # Copier le reste de l'application et faire le build
 COPY . .
-
-# Générer les fichiers statiques de l'application
 RUN npm run build
 
-# Étape 2 : Serve les fichiers statiques générés avec Nginx
+# Étape 2 : Servir les fichiers statiques avec Nginx
 FROM nginx:alpine
-
-# Copier la configuration spécifique à l'application React
-COPY react-crm.conf /etc/nginx/conf.d/
 
 # Copier les fichiers générés dans le dossier dist vers le répertoire Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exposer les ports 80 (HTTP) et 443 (HTTPS)
+# Exposer uniquement le port 80
 EXPOSE 80
-EXPOSE 443
 
-# Démarrer Nginx (par défaut Nginx écoute déjà sur le port 80 et 443)
+# Démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]
