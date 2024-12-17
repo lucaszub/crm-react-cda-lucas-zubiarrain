@@ -14,10 +14,13 @@ RUN npm run build
 # Étape 2 : Servir les fichiers statiques avec Nginx
 FROM nginx:alpine
 
+# Copier le fichier nginx.conf personnalisé dans le conteneur
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copier les fichiers générés dans le dossier dist vers le répertoire Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exposer uniquement le port 80 test
+# Exposer le port 80
 EXPOSE 80
 
 # Démarrer Nginx
