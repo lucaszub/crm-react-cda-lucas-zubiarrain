@@ -17,7 +17,7 @@ FROM nginx:alpine
 # Copier les fichiers générés dans le dossier dist vers le répertoire Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exposer uniquement le port 80
+# Exposer uniquement le port 80 test
 EXPOSE 80
 
 # Démarrer Nginx

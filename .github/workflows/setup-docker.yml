@@ -34,7 +34,7 @@ jobs:
         if: env.installed == 'false'
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-            # Mettre à jour le système
+            # Mettre à jour le système 
             sudo apt-get update
             
             # Installer les dépendances nécessaires
