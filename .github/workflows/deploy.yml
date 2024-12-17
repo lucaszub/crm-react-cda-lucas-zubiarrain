@@ -20,21 +20,23 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # Deploy Docker container to VPS t
+      # Deploy Docker container to VPS
       - name: Deploy Docker container to VPS
         run: |
           echo "Starting SSH connection to VPS..."
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-            set -e 
+            set -e
+            CONTAINER_NAME="react-crm"
+
             echo "Stopping existing Docker container if any..."
-            docker stop react-crm || true
-            docker rm react-crm || true
+            docker stop $CONTAINER_NAME || true
+            docker rm $CONTAINER_NAME || true
 
             echo "Pulling the latest Docker image..."
             docker pull lucaszub/react-crm:latest
 
             echo "Running the Docker container..."
-            docker run -d -p 3000:3000 lucaszub/react-crm:latest
+            docker run -d --name $CONTAINER_NAME -p 3000:3000 lucaszub/react-crm:latest
 
             echo "Deployment completed successfully!"
           EOF
