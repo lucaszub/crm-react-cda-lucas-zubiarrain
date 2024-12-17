@@ -20,7 +20,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # Deploy Docker container to VPS
+      # Deploy Docker container to VPS t
       - name: Deploy Docker container to VPS
         run: |
           echo "Starting SSH connection to VPS..."
