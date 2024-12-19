@@ -1,78 +1,61 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { getCustomers } from './services/customerService'; // Importer la fonction getCustomers
+import { AppSidebar } from "./components/app-sidebar"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
+import CustomerList from "./components/CustomerList"
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [customers, setCustomers] = useState<any[]>([]); // État pour stocker les clients
-  const [loading, setLoading] = useState<boolean>(false); // Indicateur de chargement
-  const [error, setError] = useState<string | null>(null); // Indicateur d'erreur
-
-  useEffect(() => {
-    const fetchCustomers = async () => {
-      setLoading(true);
-      setError(null); // Réinitialiser l'erreur avant l'appel
-      try {
-        const data = await getCustomers();
-        setCustomers(data); // Stocker les clients dans l'état
-      } catch (error) {
-        setError("Une erreur est survenue lors de la récupération des clients.");
-        console.error(error);
-      } finally {
-        setLoading(false); // Fin du chargement
-      }
-    };
-
-    fetchCustomers();
-  }, []); // Cette fonction sera appelée une seule fois au montage du composant
-
+const App: React.FC = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Lucas Zubiarrain React app</h1>
-      <div>Ceci est un test pour le déploiement</div>
-      <div>Autre test 343</div>
-
-      {/* Afficher les clients ou un message de chargement */}
-      <div className="card">
-        {loading ? (
-          <p>Chargement des clients...</p>
-        ) : error ? (
-          <p className="error">{error}</p>
-        ) : (
-          <ul>
-            {customers.map((customer) => (
-              <li key={customer.id_customer}>
-                {customer.name} - {customer.email}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      <div>
-        <button onClick={() => setCount(count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+   <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator orientation="vertical" className="mr-2 h-4" />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    Building Your Application
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video rounded-xl bg-muted/50"></div>
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+          </div> */}
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
+          <div className="">
+            <CustomerList />
+          </div>
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
     </>
   );
-}
+};
 
 export default App;
