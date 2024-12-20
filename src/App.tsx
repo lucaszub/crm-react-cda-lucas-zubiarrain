@@ -51,6 +51,9 @@ const App: React.FC = () => {
           <div className="flex flex-row ">
             {/* <CustomerList /> */}
             {/* < DemoPage /> */}
+            <Card className="p-5 bg-muted/50 mr-5">
+            <TableDemo />
+            </Card>
             <Card className="p-5 bg-muted/50">
             <TableDemo />
             </Card>
