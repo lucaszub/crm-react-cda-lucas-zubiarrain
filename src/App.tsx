@@ -54,9 +54,9 @@ const App: React.FC = () => {
             <Card className="p-5 bg-muted/50 mr-5">
             <TableDemo />
             </Card>
-            <Card className="p-5 bg-muted/50">
+            {/* <Card className="p-5 bg-muted/50">
             <TableDemo />
-            </Card>
+            </Card> */}
          
         
           </div>
