@@ -13,7 +13,8 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import CustomerList from "./components/CustomerList"
+import { TableDemo } from "./components/table-test"
+import { Card } from "./components/ui/card"
 
 const App: React.FC = () => {
   return (
@@ -46,9 +47,15 @@ const App: React.FC = () => {
             <div className="aspect-video rounded-xl bg-muted/50" />
             <div className="aspect-video rounded-xl bg-muted/50" />
           </div> */}
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-          <div className="">
-            <CustomerList />
+          <div className="min-h-[100vh] flex-1 rounded-xl  md:min-h-min">
+          <div className="flex flex-row ">
+            {/* <CustomerList /> */}
+            {/* < DemoPage /> */}
+            <Card className="p-5 bg-muted/50">
+            <TableDemo />
+            </Card>
+         
+        
           </div>
           </div>
         </div>
