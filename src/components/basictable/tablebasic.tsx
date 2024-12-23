@@ -6,7 +6,7 @@ interface User {
   email: string;
 }
 
-const App = () => {
+const Basictable = () => {
   const [users, setUsers] = useState<User[]>([
     { id: 1, name: 'Alice', email: 'alice@example.com' },
     { id: 2, name: 'Bob', email: 'bob@example.com' },
@@ -37,11 +37,12 @@ const App = () => {
         </button>
       </div>
 
-      {/* Tableau avec coins arrondis */}
-      <table className="min-w-full table-auto border-collapse border border-gray-200 rounded-lg">
-        <thead className="bg-gray-100 rounded-t-lg">
+      {/* Tableau avec bordures visibles et coins arrondis */}
+      <div className='border rounded-xl'>
+      <table className="min-w-full table">
+        <thead className="bg-gray-100">
           <tr>
-            <th className="border border-gray-300 px-4 py-2 text-left rounded-tl-lg">ID</th>
+            <th className=" border-black-00 px-4 py-2 text-left rounded-tl-lg">ID</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Nom</th>
             <th className="border border-gray-300 px-4 py-2 text-left rounded-tr-lg">Email</th>
           </tr>
@@ -49,15 +50,16 @@ const App = () => {
         <tbody>
           {users.map(user => (
             <tr key={user.id} className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">{user.id}</td>
-              <td className="border border-gray-300 px-4 py-2">{user.name}</td>
-              <td className="border border-gray-300 px-4 py-2">{user.email}</td>
+              <td className=" border-gray-300 px-4 py-2">{user.id}</td>
+              <td className="border-t border-l border-gray-300 px-4 py-2">{user.name}</td>
+              <td className="border-t border-l- border-gray-300 px-4 py-2">{user.email}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };
 
-export default App;
+export default Basictable;

@@ -13,16 +13,28 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { TableDemo } from "./components/table-test"
-import { Card } from "./components/ui/card"
+// import { TableDemo } from "./components/table-test"
+// import { Card } from "./components/ui/card"
 import { Payment, columns } from "./components/data table/columns"
 import { DataTable } from "./components/data table/data-table"
 import React, { useEffect, useState } from "react"
-import Basictable from "./components/basictable/tablebasic"
+// import Basictable from "./components/basictable/tablebasic"
 
 // Fonction pour récupérer des données
 async function getData(): Promise<Payment[]> {
   return [
+    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
+    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
+    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
+    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
+    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
+    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
+    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
+    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
+    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
+    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
+    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
+    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
     { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
     { id: "2", amount: 200, status: "success", email: "test2@example.com" },
     { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
@@ -79,7 +91,7 @@ const App: React.FC = () => {
                   {/* Affichage du tableau avec les colonnes et les données */}
                   <DataTable columns={columns} data={data} />
                 </div>
-                <Basictable />
+                {/* <Basictable /> */}
               </div>
             </div>
           </div>
