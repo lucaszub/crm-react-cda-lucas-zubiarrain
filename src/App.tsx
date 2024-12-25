@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AppSidebar } from "./components/app-sidebar";
 import {
   Breadcrumb,
@@ -14,42 +14,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Payment } from "./components/data table/columns";
-// import { DataTable } from "./components/data table/data-table";
 import { Routes, Route } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
 import { HomePage } from "./pages/Home";
 
-// Fonction pour récupérer des données
-async function getData(): Promise<Payment[]> {
-  return [
-    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
-    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
-    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
-    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
-    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
-    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
-    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
-    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
-    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
-    { id: "1", amount: 100, status: "pending", email: "test1@example.com" },
-    { id: "2", amount: 200, status: "success", email: "test2@example.com" },
-    { id: "3", amount: 300, status: "failed", email: "test3@example.com" },
-  ];
-}
-
 const App: React.FC = () => {
-  const [data, setData] = useState<Payment[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -85,7 +54,7 @@ const App: React.FC = () => {
             path="/dashboard"
             element={
               <div className="">
-                <DashboardPage data={data} />
+                <DashboardPage />
               </div>
             }
           />

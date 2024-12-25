@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test1@example.com",
+        "phoneNumber": "08388282",
+        "accountCreationDate": "24/09/2012"
+    },
+    {
+        "id": "2",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test2@example.com",
+        "phoneNumber": "08388283",
+        "accountCreationDate": "25/09/2012"
+    },
+    {
+        "id": "3",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test3@example.com",
+        "phoneNumber": "08388284",
+        "accountCreationDate": "26/09/2012"
+    },
+    {
+        "id": "4",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test4@example.com",
+        "phoneNumber": "08388285",
+        "accountCreationDate": "27/09/2012"
+    },
+    {
+        "id": "5",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test5@example.com",
+        "phoneNumber": "08388286",
+        "accountCreationDate": "28/09/2012"
+    },
+    {
+        "id": "6",
+        "firstName": "Lucas",
+        "lastName": "Zubiarrain",
+        "email": "test6@example.com",
+        "phoneNumber": "08388287",
+        "accountCreationDate": "29/09/2012"
+    }
+]
