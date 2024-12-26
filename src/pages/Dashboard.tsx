@@ -33,7 +33,7 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="">
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-4">Client</h1>
       <div className="">
         {/* Affichage du tableau avec les colonnes et les données */}
         <DataTable columns={columns} data={data} />

@@ -13,10 +13,19 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
-import { NavMain } from "./nav-main"
+// import { NavMain } from "./nav-main"
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
 
-import { NavProjects } from "./nav-projects"
+// import { NavProjects } from "./nav-projects"
 import { NavUser } from "./nav-user"
 import { TeamSwitcher } from "./team-switcher"
 import {
@@ -60,7 +69,7 @@ const data = {
       items: [
         {
           title: "History",
-          url: "Dashboard",
+          url: "",
         },
         {
           title: "Starred",
@@ -144,6 +153,34 @@ const data = {
   ],
 }
 
+
+const items = [
+  {
+    title:"Dashboard",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Facture",
+    url: "Facture",
+    icon: Inbox,
+  },
+  {
+    title: "Client",
+    url: "/Client",
+    icon: Calendar,
+  },
+  {
+    title: "Search",
+    url: "Search",
+    icon: Search,
+  },
+  {
+    title: "Settings",
+    url: "Settings",
+    icon: Settings,
+  },
+]
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -151,8 +188,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+      <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
