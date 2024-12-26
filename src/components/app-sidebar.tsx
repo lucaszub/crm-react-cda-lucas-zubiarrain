@@ -162,7 +162,7 @@ const items = [
   },
   {
     title: "Facture",
-    url: "Facture",
+    url: "/Facture",
     icon: Inbox,
   },
   {

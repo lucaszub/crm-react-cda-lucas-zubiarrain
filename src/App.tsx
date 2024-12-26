@@ -17,6 +17,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
 import { HomePage } from "./pages/Home";
+import InvoiceGenerator from "./pages/Invoice";
 
 const App: React.FC = () => {
   return (
@@ -58,7 +59,14 @@ const App: React.FC = () => {
               </div>
             }
           />
-         
+          <Route
+            path="/Facture"
+            element={
+              <div className="">
+                <InvoiceGenerator />
+              </div>
+            }
+          />
        
         </Routes>
       </SidebarInset>
