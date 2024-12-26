@@ -17,7 +17,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
 import { HomePage } from "./pages/Home";
-import InvoiceGenerator from "./pages/Invoice";
+import Invoice from "./pages/Invoice";
 
 const App: React.FC = () => {
   return (
@@ -63,7 +63,7 @@ const App: React.FC = () => {
             path="/Facture"
             element={
               <div className="">
-                <InvoiceGenerator />
+                <Invoice />
               </div>
             }
           />
