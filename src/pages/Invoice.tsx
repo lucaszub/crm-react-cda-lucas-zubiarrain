@@ -2,8 +2,8 @@ import React from "react";
 
 const Invoice: React.FC = () => {
   return (
-    <div className=" py-12 px-4">
-      <div className="invoice container mx-auto bg-gray-50 shadow-lg rounded-lg p-8">
+    <div className=" py-12 px-4 card-for input">
+      <div className="invoice container mx-auto border shadow-lg rounded-lg p-8">
         {/* En-tête de la facture */}
         <div className="invoice-header flex justify-between mb-8">
           <div className="left-section">
@@ -25,7 +25,7 @@ const Invoice: React.FC = () => {
 
         {/* Détails entreprise et client */}
         <div className="flex gap-8">
-          <div className="company-details w-1/2 bg-gray-50 p-4 rounded-lg">
+          <div className="company-details w-1/2 bg-gray-50 border p-4 rounded-lg">
             <h4 className="text-lg font-semibold">Détails de l'entreprise</h4>
             <ul className="text-sm text-gray-600">
               <li><strong>Nom :</strong> RCJA</li>
@@ -35,9 +35,9 @@ const Invoice: React.FC = () => {
               <li><strong>Contact :</strong> John Smith</li>
             </ul>
           </div>
-          <div className="customer-details w-1/2 bg-gray-50 p-4 rounded-lg">
-            <h4 className="text-lg font-semibold">Détails du client</h4>
-            <ul className="text-sm text-gray-600">
+          <div className="customer-details w-1/2 bg-gray-50 border p-4 rounded-lg">
+            <h4 className="text-lg font-semibold ">Détails du client</h4>
+            <ul className="text-sm text-gray-600 ">
               <li><strong>Nom :</strong> RCJA</li>
               <li><strong>Adresse :</strong> 1 Rue Inconnue VIC</li>
               <li><strong>Téléphone :</strong> (+61)404123123</li>

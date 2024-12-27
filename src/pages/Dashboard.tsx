@@ -1,34 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { DataTable } from "../components/data table/data-table";
-// import { columns, Payment } from "../components/data table/columns";
-import { columns, CustomerType  } from "../components/customertable/columns";
-// import customerfromfilte from "../services/data/customer.json"; // Import JSON
-import customerfromfilte from "../services/data/customer2.json"; // Import JSON
-// 
+import { DataTable } from "@/components/customertable/data-table";
+import { columns } from "../components/customertable/columns";
+
+import { getCustomers } from "@/services/customerService";
+import { Customer } from "@/types/customerTypes";
+
 export const DashboardPage: React.FC = () => {
-  // const [data, setData] = useState<Payment[]>([]);
-  const [data, setData] = useState<CustomerType[]>([]);
+  const [data, setData] = useState<Customer[]>([]);
 
-  // useEffect(() => {
-  //   // Transformation des données pour garantir leur conformité au type `Payment`
-  //   const parsedData: Payment[] = customerfromfilte.map((entry) => ({
-  //     ...entry,
-  //     status: entry.status as "pending" | "processing" | "success" | "failed",
-  //   }));
-
-  //   setTimeout(() => {
-  //     setData(parsedData); // Utilisation des données corrigées
-  //   }, 200);
-  // }, []);
   useEffect(() => {
-    // Transformation des données pour garantir leur conformité au type `Payment`
-    const parsedData: CustomerType[] = customerfromfilte.map((entry) => ({
-      ...entry,
-    }));
+    const fetchCustomers = async () => {
+      try {
+        const rawData = await getCustomers(); // Appel API pour récupérer les données
 
-    setTimeout(() => {
-      setData(parsedData); // Utilisation des données corrigées
-    }, 200);
+        // Mapper les données pour correspondre au type Customer si nécessaire
+        const mappedData = rawData.map((entry: any) => ({
+          id: entry.id_customer, // Exemple de transformation
+          name: entry.name,
+          email: entry.email,
+          adress: entry.adress,
+          phone: entry.phone,
+          registration_date: entry.registration_date,
+         
+
+          // Ajoute d'autres propriétés nécessaires ici
+        }));
+
+        setData(mappedData); // Mise à jour du state avec les données transformées
+        console.log(mappedData)
+      } catch (error) {
+        console.error("Erreur lors de la récupération des clients:", error);
+      }
+    };
+
+    fetchCustomers();
   }, []);
 
   return (
