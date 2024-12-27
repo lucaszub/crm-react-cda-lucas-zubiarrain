@@ -16,7 +16,8 @@ export const DashboardPage: React.FC = () => {
         // Mapper les données pour correspondre au type Customer si nécessaire
         const mappedData = rawData.map((entry: any) => ({
           id: entry.id_customer, // Exemple de transformation
-          name: entry.name,
+          nom: entry.name,
+          prenom: entry.prenom,
           email: entry.email,
           adress: entry.adress,
           phone: entry.phone,

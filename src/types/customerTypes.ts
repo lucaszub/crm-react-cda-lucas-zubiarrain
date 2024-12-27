@@ -1,7 +1,8 @@
 // Exemple de type pour un client
 export interface Customer {
     id_customer: number;
-    name: string;
+    nom: string;
+    prenom:string;
     email: string;
     phone: string;
     address: string;

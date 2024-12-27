@@ -15,14 +15,6 @@ import { ArrowUpDown } from "lucide-react"
 // import { Checkbox } from "@/components/ui/checkbox"// This type is used to define the shape of our data.
 import { Customer } from "@/types/customerTypes"
 
-export type CustomerType = {
-  id: string
-  firstName:string
-  lastName:string
-  email:string
-  phoneNumber:string
-  accountCreationDate:string
-}
 
 export const columns: ColumnDef<Customer>[] = [
   {
@@ -31,9 +23,12 @@ export const columns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: "Nom",
-    header:"Name",
+    header:"Nom",
   },
-
+  {
+    accessorKey: "prenom",
+    header:"Prénom",
+  },
   {
     accessorKey: "email",
     header: ({ column }) => {
