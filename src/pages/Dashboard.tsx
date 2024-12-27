@@ -12,23 +12,22 @@ export const DashboardPage: React.FC = () => {
     const fetchCustomers = async () => {
       try {
         const rawData = await getCustomers(); // Appel API pour récupérer les données
+        console.log("Avant le mappage", rawData);
 
         // Mapper les données pour correspondre au type Customer si nécessaire
         const mappedData = rawData.map((entry: any) => ({
           id: entry.id_customer, // Exemple de transformation
-          nom: entry.name,
-          prenom: entry.prenom,
+          nom: entry.nom, // Utilise 'nom' au lieu de 'name'
+          prenom: entry.prenom, // Utilise 'prenom' directement
           email: entry.email,
-          adress: entry.adress,
+          adress: entry.address, // Utilise 'adress' correctement
           phone: entry.phone,
           registration_date: entry.registration_date,
-         
-
           // Ajoute d'autres propriétés nécessaires ici
         }));
 
         setData(mappedData); // Mise à jour du state avec les données transformées
-        console.log(mappedData)
+        console.log("Après le mappage", mappedData);
       } catch (error) {
         console.error("Erreur lors de la récupération des clients:", error);
       }

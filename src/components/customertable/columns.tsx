@@ -18,11 +18,11 @@ import { Customer } from "@/types/customerTypes"
 
 export const columns: ColumnDef<Customer>[] = [
   {
-    accessorKey: "id_customer",
-    header: "id",
+    accessorKey: "id",
+    header: "id_customer",
   },
   {
-    accessorKey: "Nom",
+    accessorKey: "nom",
     header:"Nom",
   },
   {
@@ -49,8 +49,8 @@ export const columns: ColumnDef<Customer>[] = [
   },
  
   {
-    accessorKey: "address",
-    header:"Numéro"
+    accessorKey: "adress",
+    header:"address"
   },
   {
     accessorKey: "registration_date",
