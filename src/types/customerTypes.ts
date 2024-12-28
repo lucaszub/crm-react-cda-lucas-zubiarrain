@@ -8,4 +8,12 @@ export interface Customer {
     address: string;
     registration_date: string;
   }
+
+export interface CustomerPost{
+  nom: string;
+  prenom: string;
+  email: string;
+  phone: string;
+  address: string;
+}
   

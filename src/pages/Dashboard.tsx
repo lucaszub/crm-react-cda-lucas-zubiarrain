@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/customertable/data-table";
 import { columns } from "../components/customertable/columns";
-
-import { getCustomers } from "@/services/customerService";
-import { Customer } from "@/types/customerTypes";
+import { Button } from "@/components/ui/button";
+import { getCustomers, createCustomer } from "@/services/customerService";
+import { Customer, CustomerPost } from "@/types/customerTypes";
 
 export const DashboardPage: React.FC = () => {
-  const [data, setData] = useState<Customer[]>([]);
+  const [data, setData] = useState<Customer[]>([]); // Liste des clients
+  const [newCustomer, setNewCustomer] = useState<CustomerPost>({
+    nom: "",
+    prenom: "",
+    email: "",
+    phone: "",
+    address: "", // Correctement typé avec "adress"
+  });
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -16,14 +23,13 @@ export const DashboardPage: React.FC = () => {
 
         // Mapper les données pour correspondre au type Customer si nécessaire
         const mappedData = rawData.map((entry: any) => ({
-          id: entry.id_customer, // Exemple de transformation
-          nom: entry.nom, // Utilise 'nom' au lieu de 'name'
-          prenom: entry.prenom, // Utilise 'prenom' directement
+          id_customer: entry.id_customer, // Exemple de transformation
+          nom: entry.nom,
+          prenom: entry.prenom,
           email: entry.email,
-          adress: entry.address, // Utilise 'adress' correctement
+          adress: entry.address,
           phone: entry.phone,
           registration_date: entry.registration_date,
-          // Ajoute d'autres propriétés nécessaires ici
         }));
 
         setData(mappedData); // Mise à jour du state avec les données transformées
@@ -36,12 +42,93 @@ export const DashboardPage: React.FC = () => {
     fetchCustomers();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewCustomer((prev) => ({ ...prev, [name]: value })); // Mise à jour des champs du formulaire
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const createdCustomer = await createCustomer(newCustomer);
+      setData((prevData) => [...prevData, createdCustomer]); // Ajouter le client à la liste
+      setNewCustomer({
+        nom: "",
+        prenom: "",
+        email: "",
+        phone: "",
+        address: "",
+      }); // Réinitialiser le formulaire
+    } catch (error) {
+      console.error("Erreur lors de la création du client:", error);
+    }
+  };
+
   return (
-    <div className="">
+    <div className="p-4">
       <h1 className="text-3xl font-bold mb-4">Client</h1>
-      <div className="">
+      <div className="mb-8">
         {/* Affichage du tableau avec les colonnes et les données */}
         <DataTable columns={columns} data={data} />
+      </div>
+      <div className="bg-white p-4 rounded shadow-md">
+        <h2 className="text-xl font-semibold mb-4">Ajouter un nouveau client</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="nom"
+              placeholder="Nom"
+              value={newCustomer.nom}
+              onChange={handleInputChange}
+              className="border p-2 rounded"
+              required
+            />
+            <input
+              type="text"
+              name="prenom"
+              placeholder="Prénom"
+              value={newCustomer.prenom}
+              onChange={handleInputChange}
+              className="border p-2 rounded"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={newCustomer.email}
+              onChange={handleInputChange}
+              className="border p-2 rounded"
+              required
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Téléphone"
+              value={newCustomer.phone}
+              onChange={handleInputChange}
+              className="border p-2 rounded"
+              required
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Adresse"
+              value={newCustomer.address}
+              onChange={handleInputChange}
+              className="border p-2 rounded"
+              required
+            />
+          </div>
+          <Button 
+            type="submit"
+            className="mt-4  py-2 px-4 "
+            >
+            
+            Ajouter le client
+          </Button>
+        </form>
       </div>
     </div>
   );

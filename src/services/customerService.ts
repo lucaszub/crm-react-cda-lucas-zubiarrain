@@ -11,12 +11,12 @@ export const getCustomers = async () => {
   }
 };
 
-// export const createCustomer = async (customer: { name: string; email: string; phone: string }) => {
-//   try {
-//     const response = await axios.post(getApiUrl('/customers/create'), customer); // Route d'ajout
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error creating customer", error);
-//     throw error;
-//   }
-// };
+export const createCustomer = async (customer: { nom: string; prenom:string; email: string; phone: string; address: string }) => {
+  try {
+    const response = await axios.post(getApiUrl('/customers/'), customer); // Route d'ajout
+    return response.data;
+  } catch (error) {
+    console.error("Error creating customer", error);
+    throw error;
+  }
+};
