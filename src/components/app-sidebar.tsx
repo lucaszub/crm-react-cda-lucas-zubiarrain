@@ -176,8 +176,8 @@ const items = [
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "Settings",
+    title: "Calendar",
+    url: "Calendar",
     icon: Settings,
   },
 ]

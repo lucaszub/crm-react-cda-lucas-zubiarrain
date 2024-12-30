@@ -18,6 +18,8 @@ import { Routes, Route } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
 import { HomePage } from "./pages/Home";
 import Invoice from "./pages/Invoice";
+import MyCalendar from "./pages/Calendar";
+
 
 const App: React.FC = () => {
   return (
@@ -64,6 +66,14 @@ const App: React.FC = () => {
             element={
               <div className="">
                 <Invoice />
+              </div>
+            }
+          />
+          <Route
+            path="/Calendar"
+            element={
+              <div className="">
+                <MyCalendar/>
               </div>
             }
           />

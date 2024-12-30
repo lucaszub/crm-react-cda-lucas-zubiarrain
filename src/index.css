@@ -80,3 +80,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Personnalisation avec les variables Tailwind */
+.rbc-calendar {
+  @apply shadow-lg rounded-lg;
+  background-color: var(--background); /* Utilisation de la couleur de fond définie */
+}
+
+.rbc-header {
+  @apply bg-primary text-primary-foreground; /* Applique les couleurs primaires */
+}
+
+.rbc-day-bg {
+  @apply p-2 text-center;
+  background-color: var(--secondary); /* Couleur de fond secondaire */
+}
+
+.rbc-selected {
+  @apply bg-accent text-accent-foreground;
+}
+
+.rbc-event {
+  @apply bg-primary text-primary-foreground rounded-lg; /* Événements avec une couleur personnalisée */
+}
+
+.rbc-now {
+  @apply border-2 border-accent; /* Bordure pour la date du jour */
+}
