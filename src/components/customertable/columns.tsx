@@ -18,7 +18,7 @@ import { Customer } from "@/types/customerTypes"
 
 export const columns: ColumnDef<Customer>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "id_customer",
     header: "id_customer",
   },
   {
