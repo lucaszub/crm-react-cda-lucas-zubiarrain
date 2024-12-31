@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -27,8 +28,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
-  ;
+    --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -36,7 +36,9 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -61,8 +63,7 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
-  ;
+    --chart-5: 340 75% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -70,8 +71,10 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
+
 @layer base {
   * {
     @apply border-border;
@@ -81,29 +84,45 @@
   }
 }
 
-/* Personnalisation avec les variables Tailwind */
+/* Personnalisation du calendrier avec les variables Tailwind */
 .rbc-calendar {
   @apply shadow-lg rounded-lg;
   background-color: var(--background); /* Utilisation de la couleur de fond définie */
 }
 
 .rbc-header {
-  @apply bg-primary text-primary-foreground; /* Applique les couleurs primaires */
+  @apply bg-gray-100  font-bold; /* Tête de colonne avec couleur personnalisée */
 }
 
-.rbc-day-bg {
-  @apply p-2 text-center;
-  background-color: var(--secondary); /* Couleur de fond secondaire */
-}
 
-.rbc-selected {
-  @apply bg-accent text-accent-foreground;
-}
 
-.rbc-event {
-  @apply bg-primary text-primary-foreground rounded-lg; /* Événements avec une couleur personnalisée */
-}
+
 
 .rbc-now {
-  @apply border-2 border-accent; /* Bordure pour la date du jour */
+  @apply border-2 border-accent; /* Bordure autour du jour actuel */
 }
+
+
+
+.rbc-btn {
+  @apply bg-primary-foreground text-primary px-3 py-1 rounded-full; /* Style des boutons */
+}
+
+.rbc-day-selected {
+  @apply bg-accent text-accent-foreground; /* Sélection du jour */
+}
+
+.rbc-day-today {
+  @apply bg-gray-100; /* Surbrillance du jour actuel */
+} 
+
+/* Exemple responsive : ajuster la taille des cases pour les écrans plus petits
+@media (max-width: 768px) {
+  .rbc-day {
+    width: 70px;
+  }
+
+  .rbc-day-bg {
+    height: 100px;
+  }
+} */
