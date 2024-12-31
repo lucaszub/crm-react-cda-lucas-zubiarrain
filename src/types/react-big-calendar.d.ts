@@ -1,12 +1,25 @@
 declare module 'react-big-calendar' {
-  import { ComponentType } from 'react';
+  import { ComponentType, ReactNode, CSSProperties } from 'react';
   import * as moment from 'moment';
 
   export interface Event {
     title: string;
     start: Date | string | moment.Moment;
     end: Date | string | moment.Moment;
-    [key: string]: any;
+    [key: string]: any; // Pour permettre des propriétés supplémentaires
+  }
+
+  export interface SlotInfo {
+    start: Date;
+    end: Date;
+    action: 'select' | 'click'; // Action possible
+  }
+
+  export interface ToolbarProps {
+    label: string;
+    onNavigate: (action: 'PREV' | 'NEXT' | 'TODAY') => void;
+    onView: (view: 'month' | 'week' | 'work_week' | 'day' | 'agenda') => void;
+    view: 'month' | 'week' | 'work_week' | 'day' | 'agenda';
   }
 
   export interface CalendarProps {
@@ -14,13 +27,26 @@ declare module 'react-big-calendar' {
     startAccessor: string;
     endAccessor: string;
     localizer: any;
-    style: React.CSSProperties;
-    views: string[];
-    defaultView: string;
+    style?: CSSProperties;
+    views: Array<'month' | 'week' | 'work_week' | 'day' | 'agenda'>;
+    defaultView: 'month' | 'week' | 'work_week' | 'day' | 'agenda';
     className?: string;
-    onSelectEvent: (event: Event) => void;
-    onSelectSlot?: (slotInfo: { start: Date; end: Date }) => void; // Ajout de la propriété onSelectSlot
-    selectable?: boolean; // Ajout de selectable si nécessaire
+    selectable?: boolean;
+    popup?: boolean;
+    tooltipAccessor?: string;
+    min?: Date;
+    max?: Date;
+    step?: number;
+    timeslots?: number;
+    showMultiDayTimes?: boolean;
+    onSelectEvent?: (event: Event) => void;
+    onSelectSlot?: (slotInfo: SlotInfo) => void;
+
+    /** Ajout du champ components pour la personnalisation */
+    components?: {
+      toolbar?: ComponentType<ToolbarProps>;
+      [key: string]: ComponentType<any>; // Permet d'ajouter d'autres composants personnalisables
+    };
   }
 
   export const Calendar: ComponentType<CalendarProps>;
