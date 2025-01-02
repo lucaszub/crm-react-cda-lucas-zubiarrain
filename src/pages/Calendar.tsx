@@ -14,11 +14,11 @@ const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => 
       {/* Boutons de navigation */}
       <div className="flex items-center space-x-2">
         <button onClick={() => onNavigate('PREV')} className="px-3 py-1 bg-gray-100 rounded">
-          Précédent
+          -
         </button>
         <span className="font-bold text-lg">{label}</span>
         <button onClick={() => onNavigate('NEXT')} className="px-3 py-1 bg-gray-100 rounded">
-          Suivant
+          +
         </button>
       </div>
 
