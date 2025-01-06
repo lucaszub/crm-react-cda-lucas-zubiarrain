@@ -4,6 +4,11 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useMediaQuery } from 'react-responsive';
 
+// ShadCN UI imports
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+
 const localizer = momentLocalizer(moment);
 
 const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => {
@@ -13,50 +18,39 @@ const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => 
     <div className="flex justify-between items-center p-2">
       {/* Boutons de navigation */}
       <div className="flex items-center space-x-2">
-        <button onClick={() => onNavigate('PREV')} className="px-3 py-1 bg-gray-100 rounded">
-          -
-        </button>
+        <Button onClick={() => onNavigate('PREV')} variant="outline" size="sm">-</Button>
         <span className="font-bold text-lg">{label}</span>
-        <button onClick={() => onNavigate('NEXT')} className="px-3 py-1 bg-gray-100 rounded">
-          +
-        </button>
+        <Button onClick={() => onNavigate('NEXT')} variant="outline" size="sm">+</Button>
       </div>
 
       {/* Sélecteur de vue et bouton Nouvel événement */}
       <div className="flex items-center space-x-2">
-        <button
-          onClick={() => onView('month')}
-          className={`px-3 py-1 ${view === 'month' ? 'bg-blue-400 text-white' : 'bg-gray-200'}`}
-        >
-          Mois
-        </button>
-        <button
-          onClick={() => onView('week')}
-          className={`px-3 py-1 ${view === 'week' ? 'bg-blue-400 text-white' : 'bg-gray-200'}`}
-        >
-          Semaine
-        </button>
-        <button
-          onClick={() => onView('day')}
-          className={`px-3 py-1 ${view === 'day' ? 'bg-blue-400 text-white' : 'bg-gray-200'}`}
-        >
-          Jour
-        </button>
-        <button
-          onClick={() => onView('agenda')}
-          className={`px-3 py-1 ${view === 'agenda' ? 'bg-blue-400 text-white' : 'bg-gray-200'}`}
-        >
-          Agenda
-        </button>
+        <Button onClick={() => onView('month')} variant={view === 'month' ? 'default' : 'outline'} size="sm">Mois</Button>
+        <Button onClick={() => onView('week')} variant={view === 'week' ? 'default' : 'outline'} size="sm">Semaine</Button>
+        <Button onClick={() => onView('day')} variant={view === 'day' ? 'default' : 'outline'} size="sm">Jour</Button>
+        <Button onClick={() => onView('agenda')} variant={view === 'agenda' ? 'default' : 'outline'} size="sm">Agenda</Button>
 
         {/* Bouton Nouvel événement (masqué sur mobile) */}
         {!isMobile && (
-          <button
-            onClick={handleAddEvent}
-            className="px-3 py-1 bg-blue-400 text-white rounded"
-          >
-            Nouvel événement
-          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button onClick={handleAddEvent} size="sm">Nouvel événement</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>Créer un événement</DialogHeader>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleAddEvent();
+                }}
+              >
+                <Input className="mb-4" placeholder="Titre de l'événement" />
+                <DialogFooter>
+                  <Button>Ajouter</Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
         )}
       </div>
     </div>
@@ -99,10 +93,7 @@ const MyCalendar = () => {
           <h2 className="text-xl font-bold mb-4">Liste des événements</h2>
           <div className="space-y-4">
             {events.map((event, index) => (
-              <div
-                key={index}
-                className="bg-white p-4 rounded shadow-md hover:bg-gray-50 transition duration-300"
-              >
+              <div key={index} className="bg-white p-4 rounded shadow-md hover:bg-gray-50 transition duration-300">
                 <div className="flex justify-between items-center">
                   <strong className="text-lg">{event.title}</strong>
                   <span className="text-sm text-gray-500">
@@ -115,14 +106,27 @@ const MyCalendar = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Bouton Nouvel événement (en bas de la liste sur mobile) */}
-          <button
-            onClick={handleAddEvent}
-            className="fixed bottom-4 right-4 px-4 py-2 bg-blue-400 text-white rounded-full shadow-lg"
-          >
-            + Nouvel événement
-          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="fixed bottom-4 right-4 p-3 rounded-full shadow-lg">+ Nouvel événement</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>Créer un événement</DialogHeader>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleAddEvent();
+                }}
+              >
+                <Input className="mb-4" placeholder="Titre de l'événement" />
+                <DialogFooter>
+                  <Button>Ajouter</Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       ) : (
         <Calendar
@@ -131,7 +135,7 @@ const MyCalendar = () => {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 700 }}
-          views={['month', 'week', 'day', 'agenda']}  
+          views={['month', 'week', 'day', 'agenda']}
           defaultView="week"
           components={{
             toolbar: (props) => <MyToolbar {...props} handleAddEvent={handleAddEvent} />,

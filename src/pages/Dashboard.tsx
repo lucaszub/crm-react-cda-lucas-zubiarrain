@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter } from "@/components/ui/dialog"; // Import des composants ShadCN UI
 import { getCustomers, createCustomer } from "@/services/customerService";
 import { Customer, CustomerPost } from "@/types/customerTypes";
-
+import { Input } from "@/components/ui/input";
 export const DashboardPage: React.FC = () => {
   const [data, setData] = useState<Customer[]>([]); // Liste des clients
   const [newCustomer, setNewCustomer] = useState<CustomerPost>({
@@ -72,7 +72,7 @@ export const DashboardPage: React.FC = () => {
       <div className="flex flex-row justify-between ">
         <h1 className="text-3xl font-bold mb-4">Client</h1>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-  <div> {/* Conteneur pour regrouper les enfants */}
+    <div> {/* Conteneur pour regrouper les enfants */}
     <DialogTrigger asChild>
       <Button onClick={() => setIsOpen(true)}>Créer un nouveau client</Button>
     </DialogTrigger>
@@ -82,49 +82,44 @@ export const DashboardPage: React.FC = () => {
       </DialogHeader>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
+          <Input
             type="text"
             name="nom"
             placeholder="Nom"
             value={newCustomer.nom}
             onChange={handleInputChange}
-            className="border p-2 rounded"
             required
           />
-          <input
+          <Input
             type="text"
             name="prenom"
             placeholder="Prénom"
             value={newCustomer.prenom}
             onChange={handleInputChange}
-            className="border p-2 rounded"
             required
           />
-          <input
+          <Input
             type="email"
             name="email"
             placeholder="Email"
             value={newCustomer.email}
             onChange={handleInputChange}
-            className="border p-2 rounded"
             required
           />
-          <input
+          <Input
             type="text"
             name="phone"
             placeholder="Téléphone"
             value={newCustomer.phone}
             onChange={handleInputChange}
-            className="border p-2 rounded"
             required
           />
-          <input
+          <Input
             type="text"
             name="address"
             placeholder="Adresse"
             value={newCustomer.address}
             onChange={handleInputChange}
-            className="border p-2 rounded"
             required
           />
         </div>
