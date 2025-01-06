@@ -15,7 +15,7 @@ export const DashboardPage: React.FC = () => {
     phone: "",
     address: "", // Correctement typé avec "adress"
   });
-  const [isOpen, setIsOpen] = useState(false); // Gérer l'ouverture et la fermeture du popup
+  const [setIsOpen] = useState(false); // Gérer l'ouverture et la fermeture du popup
 
   useEffect(() => {
     const fetchCustomers = async () => {
