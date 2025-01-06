@@ -15,7 +15,7 @@ export const DashboardPage: React.FC = () => {
     phone: "",
     address: "", // Correctement typé avec "adress"
   });
-  const [setIsOpen] = useState(false); // Gérer l'ouverture et la fermeture du popup
+  const [isOpen, setIsOpen] = useState(false); // Gérer l'ouverture et la fermeture du popup
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -71,68 +71,71 @@ export const DashboardPage: React.FC = () => {
     <div className="p-4">
       <div className="flex flex-row justify-between ">
         <h1 className="text-3xl font-bold mb-4">Client</h1>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>Créer un nouveau client</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <h2 className="text-xl font-semibold">Ajouter un nouveau client</h2>
-            </DialogHeader>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="nom"
-                  placeholder="Nom"
-                  value={newCustomer.nom}
-                  onChange={handleInputChange}
-                  className="border p-2 rounded"
-                  required
-                />
-                <input
-                  type="text"
-                  name="prenom"
-                  placeholder="Prénom"
-                  value={newCustomer.prenom}
-                  onChange={handleInputChange}
-                  className="border p-2 rounded"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={newCustomer.email}
-                  onChange={handleInputChange}
-                  className="border p-2 rounded"
-                  required
-                />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Téléphone"
-                  value={newCustomer.phone}
-                  onChange={handleInputChange}
-                  className="border p-2 rounded"
-                  required
-                />
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Adresse"
-                  value={newCustomer.address}
-                  onChange={handleInputChange}
-                  className="border p-2 rounded"
-                  required
-                />
-              </div>
-              <DialogFooter>
-                <Button type="submit" className="mt-4 py-2 px-4">Ajouter le client</Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+  <div> {/* Conteneur pour regrouper les enfants */}
+    <DialogTrigger asChild>
+      <Button onClick={() => setIsOpen(true)}>Créer un nouveau client</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <h2 className="text-xl font-semibold">Ajouter un nouveau client</h2>
+      </DialogHeader>
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="nom"
+            placeholder="Nom"
+            value={newCustomer.nom}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="prenom"
+            placeholder="Prénom"
+            value={newCustomer.prenom}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={newCustomer.email}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Téléphone"
+            value={newCustomer.phone}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Adresse"
+            value={newCustomer.address}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+            required
+          />
+        </div>
+        <DialogFooter>
+          <Button type="submit" className="mt-4 py-2 px-4">Ajouter le client</Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </div>
+</Dialog>
+
       </div>
       <div className="mb-8">
         {/* Affichage du tableau avec les colonnes et les données */}
