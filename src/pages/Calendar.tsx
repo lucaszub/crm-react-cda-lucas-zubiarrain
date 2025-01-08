@@ -140,6 +140,9 @@ const MyCalendar = () => {
           components={{
             toolbar: (props) => <MyToolbar {...props} handleAddEvent={handleAddEvent} />,
           }}
+          min={new Date(2024, 0, 1, 7, 0)}  // 8h du matin
+          max={new Date(2024, 0, 1, 20, 0)}  // 19h du soir
+          
         />
       )}
     </div>
