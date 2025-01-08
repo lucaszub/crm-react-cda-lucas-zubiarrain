@@ -15,7 +15,7 @@ const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
-    <div className="flex justify-between items-center p-2">
+    <div className="flex justify-between items-center p-2 mb-5">
       {/* Boutons de navigation */}
       <div className="flex items-center space-x-2">
         <Button onClick={() => onNavigate('PREV')} variant="outline" size="sm">-</Button>
@@ -29,7 +29,7 @@ const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => 
         <Button onClick={() => onView('week')} variant={view === 'week' ? 'default' : 'outline'} size="sm">Semaine</Button>
         <Button onClick={() => onView('day')} variant={view === 'day' ? 'default' : 'outline'} size="sm">Jour</Button>
         <Button onClick={() => onView('agenda')} variant={view === 'agenda' ? 'default' : 'outline'} size="sm">Agenda</Button>
-
+          
         {/* Bouton Nouvel événement (masqué sur mobile) */}
         {!isMobile && (
           <Dialog>
