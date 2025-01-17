@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { ChevronLeft, ChevronRight } from 'lucide-react'; // Import des icônes
 
 const localizer = momentLocalizer(moment);
 
@@ -18,9 +19,9 @@ const MyToolbar = ({ label, onNavigate, onView, view, handleAddEvent }: any) => 
     <div className="flex justify-between items-center p-2 mb-5">
       {/* Boutons de navigation */}
       <div className="flex items-center space-x-2">
-        <Button onClick={() => onNavigate('PREV')} variant="outline" size="sm">-</Button>
+        <Button onClick={() => onNavigate('PREV')} variant="outline" size="sm"><ChevronLeft/></Button>
         <span className="font-bold text-lg">{label}</span>
-        <Button onClick={() => onNavigate('NEXT')} variant="outline" size="sm">+</Button>
+        <Button onClick={() => onNavigate('NEXT')} variant="outline" size="sm"><ChevronRight /></Button>
       </div>
 
       {/* Sélecteur de vue et bouton Nouvel événement */}
