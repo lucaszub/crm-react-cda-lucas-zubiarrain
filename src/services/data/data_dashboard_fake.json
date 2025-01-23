@@ -1,0 +1,32 @@
+{
+    "kpi_summary": {
+      "date": "2025-01-01",
+      "total_clients": 150,
+      "total_opportunities": 25,
+      "total_sales": 10,
+      "avg_conversion_rate": 40.0,
+      "interactions_last_30_days": 120,
+      "revenue_monthly": [12000, 15000, 18000, 20000, 22000, 24000, 26000, 30000, 31000, 33000, 34000, 36000]
+    },
+    "opportunities": [
+      {
+        "client_name": "Client A",
+        "estimated_amount": 10000,
+        "status": "Open",
+        "expected_closing_date": "2025-02-01"
+      },
+      {
+        "client_name": "Client B",
+        "estimated_amount": 15000,
+        "status": "Negotiation",
+        "expected_closing_date": "2025-01-20"
+      },
+      {
+        "client_name": "Client C",
+        "estimated_amount": 2000,
+        "status": "Closed Won",
+        "expected_closing_date": "2024-12-30"
+      }
+    ]
+  }
+  

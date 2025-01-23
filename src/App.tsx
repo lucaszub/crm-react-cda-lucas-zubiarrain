@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Routes, Route } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
-import { HomePage } from "./pages/Home";
+import DashboardLayout from "./pages/DashboardLayout";
 import Invoice from "./pages/Invoice";
 import MyCalendar from "./pages/Calendar";
 
@@ -48,8 +48,8 @@ const App: React.FC = () => {
         <Route
             path="/"
             element={
-              <div className="min-h-[100vh] flex-1 rounded-xl md:min-h-min">
-                <HomePage />
+              <div className="">
+                <DashboardLayout />
               </div>
             }
           />

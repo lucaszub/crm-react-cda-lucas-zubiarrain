@@ -135,7 +135,7 @@ const MyCalendar = () => {
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 700 }}
+          style={{ height: 800 }}
           views={['month', 'week', 'day', 'agenda']}
           defaultView="week"
           components={{
